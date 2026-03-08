@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 10%;
+    --foreground: 0 0% 95%;
+    --card: 0 0% 13%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 13%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 249 86% 67%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 80%;
+    --muted: 0 0% 16%;
+    --muted-foreground: 0 0% 55%;
+    --accent: 249 86% 67%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 22%;
+    --input: 0 0% 22%;
+    --ring: 249 86% 67%;
+    --radius: 0.625rem;
+  }
+
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-[#1A1A1A] text-gray-100;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #383838; border-radius: 99px; }
+  ::-webkit-scrollbar-thumb:hover { background: #505050; }
+}
+
+@layer components {
+
+  /* Cards */
+  .vault-card {
+    @apply bg-[#242424] rounded-xl border border-white/[0.07]
+           shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_1px_2px_-1px_rgba(0,0,0,0.2)]
+           transition-shadow duration-200;
+  }
+  .vault-card:hover {
+    @apply shadow-[0_4px_16px_0_rgba(0,0,0,0.4),0_2px_4px_-1px_rgba(0,0,0,0.25)];
+  }
+
+  .stat-card {
+    @apply bg-[#242424] rounded-xl border border-white/[0.07]
+           shadow-[0_1px_3px_0_rgba(0,0,0,0.3)] p-5;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-[#7765F3] hover:bg-[#6452e0] active:bg-[#5843cc]
+           text-white font-medium text-sm
+           px-4 py-2.5 rounded-lg
+           shadow-[0_1px_2px_0_rgba(0,0,0,0.1)]
+           hover:shadow-[0_4px_14px_0_rgba(119,101,243,0.4)]
+           transition-all duration-150
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7765F3] focus-visible:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-white/[0.06] hover:bg-white/[0.10] active:bg-white/[0.14]
+           text-white/70 hover:text-white font-medium text-sm
+           px-4 py-2.5 rounded-lg
+           border border-white/[0.10] hover:border-white/[0.18]
+           transition-all duration-150
+           disabled:opacity-50 disabled:cursor-not-allowed
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:ring-offset-0;
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2
+           bg-red-600 hover:bg-red-700 active:bg-red-800
+           text-white font-medium text-sm
+           px-4 py-2.5 rounded-lg
+           transition-all duration-150
+           disabled:opacity-50 disabled:cursor-not-allowed
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2
+           bg-transparent hover:bg-white/[0.06] active:bg-white/[0.10]
+           text-white/60 hover:text-white font-medium text-sm
+           px-3 py-2 rounded-lg transition-all duration-150
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Dark theme: modals that appear on dark bg need dark styling */
+  .modal-dark {
+    @apply bg-[#2a2a2a] border border-white/[0.08] text-white;
+  }
+
+  /* Dark theme: remap table/list separators used inside vault-card */
+  .vault-card .divide-y > * + * {
+    border-top-color: rgba(255,255,255,0.06);
+  }
+  .vault-card thead tr {
+    background-color: rgba(255,255,255,0.04);
+    border-bottom-color: rgba(255,255,255,0.06);
+  }
+  .vault-card tbody tr:hover {
+    background-color: rgba(255,255,255,0.03);
+  }
+  .vault-card tbody tr + tr {
+    border-top-color: rgba(255,255,255,0.04);
+  }
+
+  /* Inputs */
+  .input-field {
+    @apply w-full bg-white/[0.06] border border-white/[0.09] rounded-lg
+           px-3.5 py-2.5 text-sm text-white
+           placeholder:text-white/30
+           transition-all duration-150
+           focus:outline-none focus:border-[#7765F3]/60 focus:ring-2 focus:ring-[#7765F3]/15
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Badges */
+  .badge-success {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium
+           bg-emerald-500/10 text-emerald-400 border border-emerald-500/20;
+  }
+
+  .badge-warning {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium
+           bg-amber-500/10 text-amber-400 border border-amber-500/20;
+  }
+
+  .badge-danger {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium
+           bg-red-500/10 text-red-400 border border-red-500/20;
+  }
+
+  .badge-info {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium
+           bg-[#7765F3]/10 text-[#7765F3] border border-[#7765F3]/20;
+  }
+
+  .badge-gray {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium
+           bg-white/[0.06] text-white/50 border border-white/[0.08];
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "datavault",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "cd apps/web && npm run dev",
+    "build": "cd apps/web && npm run build",
+    "node": "cd packages/contracts && npm run node",
+    "compile": "cd packages/contracts && npm run compile",
+    "deploy": "cd packages/contracts && npm run deploy:localhost",
+    "test:contracts": "cd packages/contracts && npm run test",
+    "install:all": "cd packages/contracts && npm install && cd ../../apps/web && npm install",
+    "clear": "rm -rf node_modules package-lock.json .next"
+  }
+}
